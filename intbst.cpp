@@ -64,7 +64,7 @@ void IntBST::printPreOrder(Node *n) const {
     if ( n==nullptr ) {
         return;
     }
-        cout << n->data << endl;
+        cout << n->data;
         printPreOrder(n->left);
         printPreOrder(n->right);
 }
@@ -78,7 +78,7 @@ void IntBST::printInOrder(Node *n) const {
         return;
     }
         printInOrder(n->left);
-        cout << n->data << endl;
+        cout << n->data;
         printInOrder(n->right);
 }
 
@@ -95,7 +95,7 @@ void IntBST::printPostOrder(Node *n) const {
         
         printPostOrder(n->left);
         printPostOrder(n->right);
-        cout << n->data << endl;
+        cout << n->data;
 }
 
 // return sum of values in tree
