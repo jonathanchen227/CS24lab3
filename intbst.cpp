@@ -166,28 +166,30 @@ bool IntBST::contains(int value, Node* n) const {
     
 }
 // returns the Node containing the predecessor of the given value
-int IntBST::getPredecessor(int value,Node* n) const{
+int IntBST::getPredecessor(int value,Node* n) const {
+    Node* n = root;
     int predecessor = 0;
+
     while (n != nullptr) {
-        if ( value > n->data ) {
+        if (value > n->data) {
             predecessor = n->data;
-            n = n -> right;
+            n = n->right;
         }
-    else if ( value < n -> data ) {
-        n = n -> left;
+        else if (value < n->data) {
+            n = n->left;
+        }
+        else {
+            if (n->left != nullptr) {
+                n = n->left;
+                while (n->right != nullptr) {
+                    n = n->right;
+                }
+                return n->data;
+            }
+            return predecessor;
+        }
     }
-    else {
-        if ( n -> left != nullptr ) {
-          n = n->left;
-          while ( n->right != nullptr ) {
-              n = n->right;
-          }
-          return n->data;
-    return predecessor;
-    }
-    }
-    return 0; // REPLACE THIS NON-SOLUTION
-}
+    return 0;
 }
 
 // returns the predecessor value of the given value or 0 if there is none
@@ -197,28 +199,29 @@ int IntBST::getPredecessor(int value) const{
 
 // returns the Node containing the successor of the given value
 int IntBST::getSuccessor(int value,Node* n) const {
+    Node* n = root;
     int successor = 0;
+
     while (n != nullptr) {
-        if ( value <  n->data ) {
+        if (value < n->data) {
             successor = n->data;
-            n = n -> left;
+            n = n->left;
         }
-        else if ( value > n -> data ) {
-        n = n -> right;
-    }
-    else {
-        if ( n -> right != nullptr ) {
-          n = n->right;
-          while ( n->left != nullptr ) {
-              n = n->left;
-          }
-          return n->data;
-    return successor;
-    }
+        else if (value > n->data) {
+            n = n->right;
+        }
+        else {
+            if (n->right != nullptr) {
+                n = n->right;
+                while (n->left != nullptr) {
+                    n = n->left;
+                }
+                return n->data;
+            }
+            return successor;
+        }
     }
     return 0;
-     // REPLACE THIS NON-SOLUTION
-}
 }
 
 
