@@ -189,6 +189,7 @@ int IntBST::getPredecessor(int value,Node* n) const{
     return 0;
      // REPLACE THIS NON-SOLUTION
 }
+}
 
 // returns the predecessor value of the given value or 0 if there is none
 int IntBST::getPredecessor(int value) const{
@@ -218,6 +219,7 @@ int IntBST::getSuccessor(int value,Node* n) const {
     }
     return 0;
      // REPLACE THIS NON-SOLUTION
+}
 }
 
 
