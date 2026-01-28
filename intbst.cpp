@@ -142,6 +142,7 @@ IntBST::Node* IntBST::getNodeFor(int value, Node* n) const{
      if ( n->data > value ) {
        return getNodeFor (value, n->left);
      }
+     return nullptr;
 }
 
 // returns true if value is in the tree; false if not
@@ -166,25 +167,26 @@ bool IntBST::contains(int value, Node* n) const {
 }
 // returns the Node containing the predecessor of the given value
 int IntBST::getPredecessor(int value,Node* n) const{
-    if ( n == nullptr ) {
-        return 0;
-    }
-    if ( n->data == value ) {
-        if (n->left != nullptr) {
-        Node* a = n->left; 
-        while(a->right) {
-            a = a->right;
+    int predecessor = 0;
+    while (n != nullptr) {
+        if ( value > n->data ) {
+            predecessor = n->data;
+            n = n -> right;
         }
-        return a->data;
-    }
-    return 0;
-    }
-    if (n->data > value ) {
-       return getPredecessor(value,n->left);
+    else if ( value < n -> data ) {
+        n = n -> left;
     }
     else {
-       return getPredecessor(value,n->right);
+        if ( n -> left != nullptr ) {
+          n = n->left;
+          while ( n->right != nullptr ) {
+              n = n->right;
+          }
+          return n->data;
+    return predecessor;
     }
+    }
+    return 0;
      // REPLACE THIS NON-SOLUTION
 }
 
@@ -194,28 +196,30 @@ int IntBST::getPredecessor(int value) const{
 }
 
 // returns the Node containing the successor of the given value
-int IntBST::getSuccessor(int value,Node* n) const{
-    if ( n == nullptr ) {
-        return 0;
-    }
-    if ( n->data == value ) {
-        if (n->right != nullptr) {
-        Node* a = n->right;
-        while(a->left) {
-            a = a->left;
+int IntBST::getSuccessor(int value,Node* n) const {
+    int successor = 0;
+    while (n != nullptr) {
+        if ( value <  n->data ) {
+            successor = n->data;
+            n = n -> left;
         }
-        return a->data;
-    }
-    return 0;
-    }
-    if (n->data > value ) {
-       return getSuccessor(value,n->left);
+        else if ( value > n -> data ) {
+        n = n -> right;
     }
     else {
-       return getSuccessor(value,n->right);
+        if ( n -> right != nullptr ) {
+          n = n->right;
+          while ( n->left != nullptr ) {
+              n = n->left;
+          }
+          return n->data;
+    return successor;
     }
-
+    }
+    return 0;
+     // REPLACE THIS NON-SOLUTION
 }
+
 
 // returns the successor value of the given value or 0 if there is none
 int IntBST::getSuccessor(int value) const{
